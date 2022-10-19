@@ -6,9 +6,14 @@ class Calendar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      viewType: "Week"
+      viewType: "Week",
+      durationBarVisible: true,
     };
   }
+
+
+
+
 
   render() {
     const {...config} = this.state;
@@ -16,6 +21,10 @@ class Calendar extends Component {
       <div>
         <DayPilotCalendar
           {...config}
+          onTimeRangeSelected={args => {
+            this.calendar.message("Selected range: " + args.start.toString("hh:mm tt") + " - " + args.end.toString("hh:mm tt"));
+          }}
+          ref={this.calendarRef}
         />
       </div>
     );
