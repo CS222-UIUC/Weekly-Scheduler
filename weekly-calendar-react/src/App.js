@@ -16,16 +16,14 @@ class App extends Component {
     // add the props here
     this.state = {
      
-      // the viewCompleted prop represents the status
-      // of the task. Set it to false by default
       activeItem: {
         title: "",
         duration: "",
         block: false
       },
-       
+       taskList: []
     };
-    //taskList[];
+    
   }
  
   // Add componentDidMount()

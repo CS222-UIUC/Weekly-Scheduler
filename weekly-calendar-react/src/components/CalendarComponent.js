@@ -8,6 +8,7 @@ class Calendar extends Component {
     this.state = {
       viewType: "Week",
       durationBarVisible: true,
+      
     };
   }
 
