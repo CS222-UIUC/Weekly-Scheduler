@@ -53,7 +53,17 @@ render() {
 				placeholder="Enter Task Title"
 			/>
 			</FormGroup>
-
+			
+			<FormGroup>
+			<Label for="day">Day</Label>
+			<Input
+				type="text"
+				name="day"
+				value={this.state.activeItem.day}
+				onChange={this.handleChange}
+				placeholder="Enter Day (monday, tuesday, etc..)"
+			/>
+			</FormGroup>
 			{/* 2 description label */}
 			<FormGroup>
 			<Label for="duration">Duration</Label>

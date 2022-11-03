@@ -66,7 +66,7 @@ class App extends Component {
  
   // Create item
   createItem = () => {
-    const item = { title: "", duration: "", block: false };
+    const item = { title: "", duration: "",day: "", block: false };
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
   // Start by visual effects to viewer

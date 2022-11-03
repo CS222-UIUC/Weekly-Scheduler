@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'events',
     'corsheaders',
-    'rest_framework'
+    'rest_framework',
+    
 ]
 # White listing the localhost:3000 port
 # for React

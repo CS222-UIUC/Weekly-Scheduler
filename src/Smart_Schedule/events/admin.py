@@ -7,7 +7,7 @@ from .models import Event
 class EventAdmin(admin.ModelAdmin):
  
     # add the fields of the model here
-    list_display = ("title","duration","block")
+    list_display = ("title","duration","block", "day")
  
 # we will need to register the
 # model class and the Admin model class
