@@ -1,3 +1,4 @@
+import datetime as dt
 from django.shortcuts import render
 from django.shortcuts import render
  
@@ -20,3 +21,9 @@ class EventView(viewsets.ModelViewSet):
     # define a variable and populate it
     # with the Event list objects
     queryset = Event.objects.all()
+
+def sort_events(request):
+    #mon = dt.datetime.strptime('8:00:00 AM','%I:%M:%S %p')
+    monday = Event.objects.filter(day="monday").order_by('duration')
+    return render(request, 'event_list.html', {'monday' : monday })
+

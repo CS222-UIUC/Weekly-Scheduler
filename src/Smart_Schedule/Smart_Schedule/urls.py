@@ -37,7 +37,8 @@ urlpatterns = [
     # add another path to the url patterns
     # when you visit the localhost:8000/api
     # you should be routed to the django Rest framework
-    path('api/', include(router.urls))
+    path('api/', include(router.urls)),
+    path('events', views.sort_events, name="list_events"),
  
  
 ]
