@@ -2,8 +2,16 @@
 <body>
 
 <h1>Event list:</h1>
+
+<h2>Monday:</h2>
 {% for x in monday %}
-<p>{{x.title}}: {{x.duration}}</p>
+<p>{{x.title}}: {{x.start}} - {{x.end}}</p>
 {% endfor %}
+
+<h2>Tuesday:</h2>
+{% for x in tuesday %}
+<p>{{x.title}}: {{x.start}} - {{x.end}}</p>
+{% endfor %}
+
 </body>
 </html>
