@@ -83,24 +83,23 @@ class Calendar extends Component {
   }
 
   componentDidUpdate() {
-    this.refreshList();
+    /*this.refreshList();
     const item = this.activeItem;
-    const events = [
-      {
-        id: 1,
-        text: "this.state.taskList[0]",
-        start: "2022-11-28T08:00:00",
-        end: "2022-11-28T10:00:00"
-      },
-      
-    ];
+    //DayPilot.Calendar.events.load("http://localhost:8000/api/tasks/");
 
     const startDate = DayPilot.Date.today();
 
-    this.calendar.update({startDate, events});
+    this.calendar.update({startDate, events: this.state.taskList});*/
+    this.refreshList();
+    this.loadEvents();
 
   }
-  
+  async loadEvents() {
+    const start = this.calendar.visibleStart();
+    const end = this.calendar.visibleEnd();
+    const {data} = await DayPilot.Http.get(`http://localhost:8000/api/Finalized/`);
+    this.calendar.update({events: data});
+  }
 
   // rendertasks = () => {
     
