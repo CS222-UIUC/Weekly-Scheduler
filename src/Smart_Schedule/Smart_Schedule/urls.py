@@ -30,7 +30,7 @@ router = routers.DefaultRouter()
  
 # register the router
 router.register(r'tasks',views.EventView, 'task')
- 
+router.register(r'Finalized',views.FinalizedView, 'Finalized')
 urlpatterns = [
     path('admin/', admin.site.urls),
  

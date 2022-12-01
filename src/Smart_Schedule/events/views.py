@@ -7,7 +7,7 @@ from rest_framework import viewsets
  
 # import the EventSerializer from the serializer file
 from .serializers import EventSerializer
- 
+from .serializers import FinalizedSerializer
 # import the Event model from the models file
 from .models import Event
 from .models import Finalized
@@ -23,6 +23,9 @@ class EventView(viewsets.ModelViewSet):
     # define a variable and populate it
     # with the Event list objects
     queryset = Event.objects.all()
+class FinalizedView(viewsets.ModelViewSet):
+    serializer_class = FinalizedSerializer
+    queryset = Finalized.objects.all()
 
 def sort_events(request):
     Finalized.objects.all().delete()

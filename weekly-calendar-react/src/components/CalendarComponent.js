@@ -45,9 +45,10 @@ class Calendar extends Component {
 
    refreshList = () => {
     axios   //Axios to send and receive HTTP requests
-      .get("http://localhost:8000/api/tasks/")
+      .get("http://localhost:8000/api/Finalized/")
       .then(res => this.setState({ taskList: res.data }))
       .catch(err => console.log(err));
+
   };
 
   toggle = () => {
@@ -99,6 +100,7 @@ class Calendar extends Component {
     this.calendar.update({startDate, events});
 
   }
+  
 
   // rendertasks = () => {
     
