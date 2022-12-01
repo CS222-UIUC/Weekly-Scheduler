@@ -26,19 +26,41 @@ class EventView(viewsets.ModelViewSet):
 
 def sort_events(request):
     Finalized.objects.all().delete()
+
     mon_start = dt.datetime.strptime('8:00:00 AM','%I:%M:%S %p')
     tues_start = dt.datetime.strptime('8:00:00 AM','%I:%M:%S %p')
+    wed_start = dt.datetime.strptime('8:00:00 AM','%I:%M:%S %p')
+    thurs_start = dt.datetime.strptime('8:00:00 AM','%I:%M:%S %p')
+    fri_start = dt.datetime.strptime('8:00:00 AM','%I:%M:%S %p')
     mon = Event.objects.filter(day="monday").order_by('duration')
     for i in mon:
         Finalized.objects.create_Finalized(i.title, i.duration, mon_start, i.day)
         mon_start = mon_start + i.duration
-    
-    monday = Finalized.objects.filter(day="monday").order_by('-start')
+    monday = Finalized.objects.filter(day="monday").order_by('start')
 
     tues = Event.objects.filter(day="tuesday").order_by('duration')
     for i in tues:
         Finalized.objects.create_Finalized(i.title, i.duration, tues_start, i.day)
         tues_start += i.duration
-    tuesday = Finalized.objects.filter(day="tuesday").order_by('-start')
-    return render(request, 'event_list.html', {'monday' : monday, 'tuesday' : tuesday })
+    tuesday = Finalized.objects.filter(day="tuesday").order_by('start')
+
+    wed = Event.objects.filter(day="wednesday").order_by('duration')
+    for i in wed:
+        Finalized.objects.create_Finalized(i.title, i.duration, wed_start, i.day)
+        wed_start += i.duration
+    wednesday = Finalized.objects.filter(day="wednesday").order_by('-start')
+
+    thurs = Event.objects.filter(day="thursday").order_by('duration')
+    for i in thurs:
+        Finalized.objects.create_Finalized(i.title, i.duration, thurs_start, i.day)
+        thurs_start += i.duration
+    thursday = Finalized.objects.filter(day="thursday").order_by('-start')
+
+    fri = Event.objects.filter(day="friday").order_by('duration')
+    for i in fri:
+        Finalized.objects.create_Finalized(i.title, i.duration, fri_start, i.day)
+        fri_start += i.duration
+    friday = Finalized.objects.filter(day="friday").order_by('-start')
+    
+    return render(request, 'event_list.html', {'monday' : monday, 'tuesday' : tuesday, 'wednesday' : wednesday, 'thursday' : thursday, 'friday' : friday })
 
