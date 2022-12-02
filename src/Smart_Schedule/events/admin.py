@@ -9,7 +9,7 @@ class EventAdmin(admin.ModelAdmin):
     # add the fields of the model here
     list_display = ("title","duration","block", "day")
 class FinalizedAdmin(admin.ModelAdmin):
-    list_display = ("title", "start", "end", "day")
+    list_display = ("text", "start", "end", "day")
  
 # we will need to register the
 # model class and the Admin model class

@@ -13,4 +13,4 @@ class EventSerializer(serializers.ModelSerializer):
 class FinalizedSerializer(serializers.ModelSerializer):
     class Meta:
         model = Finalized
-        fields = ('id', 'title', 'start', 'end', 'day')
+        fields = ('id', 'text', 'start', 'end', 'day')

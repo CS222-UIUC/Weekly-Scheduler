@@ -13,7 +13,7 @@ class Event(models.Model):
         return self.title
 
 class FinalManager(models.Manager):
-    def create_Finalized(self, title, duration, st, day):
+    def create_Finalized(self, text, duration, st, day):
         if day == "monday":
             i = 0
         elif day == "tuesday":
@@ -28,23 +28,23 @@ class FinalManager(models.Manager):
         day_of_week = (today - timedelta(days=(today.weekday() - i)))
         addtime = timedelta(minutes=0)
         if duration > timedelta(hours=1):
-            self.create(title=title,start = datetime.combine(day_of_week, st.time(), tzinfo=pytz.UTC), end = datetime.combine(day_of_week, (st + timedelta(hours=1)).time(), tzinfo=pytz.UTC), day=day)
-            self.create(title='break',start = datetime.combine(day_of_week,(st + timedelta(hours=1)).time(), tzinfo=pytz.UTC), end = datetime.combine(day_of_week, (st + timedelta(hours=1, minutes=15)).time(), tzinfo=pytz.UTC), day=day)
+            self.create(text=text,start = datetime.combine(day_of_week, st.time(), tzinfo=pytz.UTC), end = datetime.combine(day_of_week, (st + timedelta(hours=1)).time(), tzinfo=pytz.UTC), day=day)
+            self.create(text='break',start = datetime.combine(day_of_week,(st + timedelta(hours=1)).time(), tzinfo=pytz.UTC), end = datetime.combine(day_of_week, (st + timedelta(hours=1, minutes=15)).time(), tzinfo=pytz.UTC), day=day)
             nextdur = duration - timedelta(hours=1)
             addtime += timedelta(minutes=15)
-            addtime += FinalManager.create_Finalized(self, title=title, duration=nextdur,st = st + timedelta(hours=1, minutes=15),day=day)
+            addtime += FinalManager.create_Finalized(self, text=text, duration=nextdur,st = st + timedelta(hours=1, minutes=15),day=day)
         else:
-            finalized = self.create(title=title, start = datetime.combine(day_of_week, st.time(), tzinfo=pytz.UTC), end = datetime.combine(day_of_week, (st+duration).time(), tzinfo=pytz.UTC), day=day)
+            finalized = self.create(text=text, start = datetime.combine(day_of_week, st.time(), tzinfo=pytz.UTC), end = datetime.combine(day_of_week, (st+duration).time(), tzinfo=pytz.UTC), day=day)
         return addtime
 
 class Finalized(models.Model):
-    title=models.CharField(max_length=150)
+    text=models.CharField(max_length=150)
     start=models.DateTimeField()
     end=models.DateTimeField()
     day=models.CharField(max_length=150)
     objects = FinalManager()
     def __str__(self):
         #it will return the titlepython
-        return self.title + self.start.strftime('%m/%d/%Y-%H:%M')
+        return self.text + self.start.strftime('%m/%d/%Y-%H:%M')
 
 
