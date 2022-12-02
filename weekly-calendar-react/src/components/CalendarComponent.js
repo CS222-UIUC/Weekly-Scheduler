@@ -45,7 +45,7 @@ class Calendar extends Component {
 
    refreshList = () => {
     axios   //Axios to send and receive HTTP requests
-      .get("http://localhost:8000/api/Finalized/")
+      .get("http://localhost:8000/final")
       .then(res => this.setState({ taskList: res.data }))
       .catch(err => console.log(err));
 
@@ -97,7 +97,7 @@ class Calendar extends Component {
   async loadEvents() {
     const start = this.calendar.visibleStart();
     const end = this.calendar.visibleEnd();
-    const {data} = await DayPilot.Http.get(`http://localhost:8000/api/Finalized/`);
+    const {data} = await DayPilot.Http.get(`http://localhost:8000/final`);
     this.calendar.update({events: data});
   }
 

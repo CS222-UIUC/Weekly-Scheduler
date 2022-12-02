@@ -39,6 +39,7 @@ urlpatterns = [
     # you should be routed to the django Rest framework
     path('api/', include(router.urls)),
     path('events', views.sort_events, name="list_events"),
+    path('final', views.send_events, name="FinalJsons")
  
  
 ]

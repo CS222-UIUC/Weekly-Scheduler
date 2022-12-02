@@ -26,16 +26,16 @@ class FinalManager(models.Manager):
             i = 4
         today = date.today()
         day_of_week = (today - timedelta(days=(today.weekday() - i)))
-        
+        addtime = timedelta(minutes=0)
         if duration > timedelta(hours=1):
-            self.create(title=title,start = datetime.combine(day_of_week, st.time()), end = datetime.combine(day_of_week, (st + timedelta(hours=1)).time()), day=day)
-            self.create(title='break',start = datetime.combine(day_of_week,(st + timedelta(hours=1).time())), end = datetime.combine(day_of_week, (st + timedelta(hours=1, minutes=15)).time()), day=day)
+            self.create(title=title,start = datetime.combine(day_of_week, st.time(), tzinfo=pytz.UTC), end = datetime.combine(day_of_week, (st + timedelta(hours=1)).time(), tzinfo=pytz.UTC), day=day)
+            self.create(title='break',start = datetime.combine(day_of_week,(st + timedelta(hours=1)).time(), tzinfo=pytz.UTC), end = datetime.combine(day_of_week, (st + timedelta(hours=1, minutes=15)).time(), tzinfo=pytz.UTC), day=day)
             nextdur = duration - timedelta(hours=1)
-            finalized = FinalManager.create_Finalized(self, title=title, duration=nextdur,start=st + timedelta(hours=1, minutes=15),day=day)
+            addtime += timedelta(minutes=15)
+            addtime += FinalManager.create_Finalized(self, title=title, duration=nextdur,st = st + timedelta(hours=1, minutes=15),day=day)
         else:
             finalized = self.create(title=title, start = datetime.combine(day_of_week, st.time(), tzinfo=pytz.UTC), end = datetime.combine(day_of_week, (st+duration).time(), tzinfo=pytz.UTC), day=day)
-            print(finalized)
-        return finalized
+        return addtime
 
 class Finalized(models.Model):
     title=models.CharField(max_length=150)
