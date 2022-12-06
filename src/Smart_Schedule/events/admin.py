@@ -17,3 +17,5 @@ class FinalizedAdmin(admin.ModelAdmin):
 # of admin.site class
 admin.site.register(Event,EventAdmin)
 admin.site.register(Finalized,FinalizedAdmin)
+
+
