@@ -34,13 +34,23 @@ class Calendar extends Component {
       activeItem: {
         title: "",
         duration: "",
-        block: false
+        block: false,
       },
        taskList: [],
+       eventDeleteHandling: "Update",
+      onEventClick: async args => {
+        const dp = this.calendar;
+        const modal = await DayPilot.Modal.prompt("Make some notes about your event!:", args.e.text());
+        if (!modal.result) { return; }
+        const e = args.e;
+        e.data.text = modal.result;
+        dp.events.update(e);
+      },
     
     
     
     };
+    
   }
 
    refreshList = () => {
@@ -74,7 +84,7 @@ class Calendar extends Component {
  
   // Create item
   createItem = () => {
-    const item = { title: "", duration: "",day: "", block: false };
+    const item = { title: "", duration: "",day: "", block: false,  };
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
 
@@ -101,8 +111,11 @@ class Calendar extends Component {
     this.calendar.update({events: data});
   }
 
+  
+
   // rendertasks = () => {
-    
+   
+
   // }
 
   render() {

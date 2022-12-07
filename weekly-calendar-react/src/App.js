@@ -2,12 +2,16 @@
 import './App.css';
 //import Modal from './components/Modal';
 import CalendarComponent from './components/CalendarComponent';
+import TimerComponent from './components/TimerComponent';
 import { render } from 'react-dom';
 import React, { Component } from "react";
 import Modal from "./components/Modal";
 import axios from 'axios'; 
 
+
 class App extends Component {
+
+
  
   // add a constructor to take props
   
@@ -15,8 +19,14 @@ class App extends Component {
   render() {
     return (
       <main className="content">
-        <CalendarComponent></CalendarComponent>
         
+      
+        <CalendarComponent></CalendarComponent>
+
+        <TimerComponent></TimerComponent>
+        
+
+
       
       </main>
     );
